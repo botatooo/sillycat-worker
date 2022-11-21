@@ -21,6 +21,10 @@ export interface Env {
   // MY_BUCKET: R2Bucket;
 }
 
+const hexRegex = /^(?:[0-9a-fA-F]{3}){1,2}$/;
+const defaultColor1 = "CC27DA";
+const defaultColor2 = "54C4FC";
+
 export default {
   async fetch(
     request: Request,
@@ -33,10 +37,17 @@ export default {
       case "/random":
         return new Response("Hello, world!");
       default:
-        return generateImage(
-          url.searchParams.get("color1") ?? "#CC27DA",
-          url.searchParams.get("color2") ?? "#54C4FC"
-        );
+        let color1 = url.searchParams.get("color1") || "";
+        let color2 = url.searchParams.get("color2") || "";
+
+        if (!hexRegex.test(color1)) {
+          color1 = defaultColor1;
+        }
+        if (!hexRegex.test(color2)) {
+          color2 = defaultColor1;
+        }
+
+        return generateImage(color1, color2);
     }
   },
 };
