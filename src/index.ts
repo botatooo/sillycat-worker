@@ -34,8 +34,8 @@ export default {
         return new Response("Hello, world!");
       default:
         return generateImage(
-          url.searchParams.get("color1") || "#fff",
-          url.searchParams.get("color2") || "#000"
+          url.searchParams.get("color1") ?? "#CC27DA",
+          url.searchParams.get("color2") ?? "#54C4FC"
         );
     }
   },
