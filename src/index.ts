@@ -44,7 +44,7 @@ export default {
           color1 = defaultColor1;
         }
         if (!hexRegex.test(color2)) {
-          color2 = defaultColor1;
+          color2 = defaultColor2;
         }
 
         return generateImage(color1, color2);
