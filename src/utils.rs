@@ -15,10 +15,7 @@ cfg_if! {
     }
 }
 
-pub fn generate_image(
-    color1: &str,
-    color2: &str,
-) -> std::result::Result<worker::Response, worker::Error> {
+pub fn generate_image(color1: &str, color2: &str) -> Vec<u8> {
     let svg_data = format!(
         r##"<svg
         viewBox="0 0 210 297"
@@ -75,5 +72,5 @@ pub fn generate_image(
     )
     .unwrap();
 
-    Response::from_bytes(pixmap.encode_png().unwrap())
+    pixmap.encode_png().unwrap()
 }

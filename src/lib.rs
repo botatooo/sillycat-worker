@@ -35,13 +35,19 @@ pub async fn main(req: Request, env: Env, _ctx: worker::Context) -> Result<Respo
             let url = req.url()?;
             let queries: HashMap<_, _> = url.query_pairs().collect();
 
-            let color1query = queries.get("color1").unwrap().to_string();
-            let color2query = queries.get("color2").unwrap().to_string();
+            if let Some(color1) = queries.get("color1") {
+                if let Some(color2) = queries.get("color2") {
+                    // If both `color1` and `color2` are present, return a gradient with those colors.
+                    let gradient = utils::generate_image(
+                        color1.trim_start_matches('#'),
+                        color2.trim_start_matches('#'),
+                    );
 
-            let color1 = color1query.trim_start_matches('#');
-            let color2 = color2query.trim_start_matches('#');
+                    return Response::from_bytes(gradient);
+                }
+            }
 
-            return utils::generate_image(color1, color2);
+            Response::empty()
         })
         .get("/worker-version", |_, ctx| {
             let version = ctx.var("WORKERS_RS_VERSION")?.to_string();
