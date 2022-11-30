@@ -1,7 +1,7 @@
 use cfg_if::cfg_if;
 use resvg::render;
 use tiny_skia::{Pixmap, Transform};
-use usvg::{FitTo, ImageRendering, Options, Size, Tree};
+use usvg::{FitTo, ImageRendering, Options, Tree};
 
 cfg_if! {
     // https://github.com/rustwasm/console_error_panic_hook#readme
