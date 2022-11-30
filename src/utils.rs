@@ -65,10 +65,10 @@ pub fn generate_image(color1: &str, color2: &str) -> Vec<u8> {
     );
 
     let mut opt = Options::default();
-    opt.default_size = Size::new(1000.0, 1000.0).unwrap();
+    // opt.default_size = Size::new(1000.0, 1000.0).unwrap();
     opt.image_rendering = ImageRendering::OptimizeSpeed;
     // Get file's absolute directory.
-    opt.fontdb.load_system_fonts();
+    // opt.fontdb.load_system_fonts();
 
     let rtree = Tree::from_data(svg_data.as_bytes(), &opt.to_ref()).unwrap();
 
