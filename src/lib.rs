@@ -43,7 +43,14 @@ pub async fn main(req: Request, env: Env, _ctx: worker::Context) -> Result<Respo
                         color2.trim_start_matches('#'),
                     );
 
-                    return Response::from_bytes(gradient);
+                    let mut headers = Headers::new();
+                    headers.set("Content-Type", "image/png")?;
+                    headers.set("Content-Disposition", "inline")?;
+                    headers.set("Content-Length", &gradient.len().to_string())?;
+
+                    let res = Response::from_bytes(gradient)?.with_headers(headers);
+
+                    return Ok(res);
                 }
             }
 
