@@ -98,8 +98,8 @@ pub fn generate_image(color1: &str, color2: &str) -> Vec<u8> {
 
     let mut opt = Options::default();
     // opt.default_size = Size::new(1000.0, 1000.0).unwrap();
-    opt.shape_rendering = ShapeRendering::CrispEdges;
-    opt.image_rendering = ImageRendering::OptimizeQuality;
+    // opt.shape_rendering = ShapeRendering::OptimizeSpeed;
+    // opt.image_rendering = ImageRendering::OptimizeSpeed;
     // Get file's absolute directory.
     // opt.fontdb.load_system_fonts();
 
