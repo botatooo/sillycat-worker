@@ -1,7 +1,7 @@
 use cfg_if::cfg_if;
 use resvg::render;
 use tiny_skia::{Pixmap, Transform};
-use usvg::{FitTo, ImageRendering, Options, ShapeRendering, Tree};
+use usvg::{FitTo, Options, Tree};
 
 cfg_if! {
     // https://github.com/rustwasm/console_error_panic_hook#readme
@@ -96,7 +96,7 @@ pub fn generate_image(color1: &str, color2: &str) -> Vec<u8> {
       "##
     );
 
-    let mut opt = Options::default();
+    let opt = Options::default();
     // opt.default_size = Size::new(1000.0, 1000.0).unwrap();
     // opt.shape_rendering = ShapeRendering::OptimizeSpeed;
     // opt.image_rendering = ImageRendering::OptimizeSpeed;
