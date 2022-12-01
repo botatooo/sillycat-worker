@@ -23,5 +23,8 @@ tiny-skia = "0.8.2"
 usvg = "0.26.1"
 
 [profile.release]
+strip = true
 # Tell `rustc` to optimize for small code size.
 opt-level = "s"
+lot = true
+codegen-units = 1
