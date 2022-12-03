@@ -67,6 +67,7 @@ pub async fn main(req: Request, env: Env, _ctx: worker::Context) -> Result<Respo
             headers.set("Content-Type", "image/png")?;
             headers.set("Content-Disposition", "inline")?;
             headers.set("Content-Length", &gradient.len().to_string())?;
+            headers.set("Cache-Control", "no-cache, no-store")?;
 
             let res = Response::from_bytes(gradient)?.with_headers(headers);
 
