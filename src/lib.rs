@@ -56,6 +56,22 @@ pub async fn main(req: Request, env: Env, _ctx: worker::Context) -> Result<Respo
 
             Response::empty()
         })
+        .get_async("/random", |_req, _ctx| async move {
+            // Generate a random gradient and return it.
+            let color1 = utils::generate_random_hex_color();
+            let color2 = utils::generate_random_hex_color();
+
+            let gradient = utils::generate_image(&color1, &color2);
+
+            let mut headers = Headers::new();
+            headers.set("Content-Type", "image/png")?;
+            headers.set("Content-Disposition", "inline")?;
+            headers.set("Content-Length", &gradient.len().to_string())?;
+
+            let res = Response::from_bytes(gradient)?.with_headers(headers);
+
+            Ok(res)
+        })
         .get("/worker-version", |_, ctx| {
             let version = ctx.var("WORKERS_RS_VERSION")?.to_string();
             Response::ok(version)
