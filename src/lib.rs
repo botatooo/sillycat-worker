@@ -1,6 +1,5 @@
 use std::collections::HashMap;
-
-use worker::*;
+use worker::{console_log, event, Date, Env, Headers, Request, Response, Result, Router};
 
 mod utils;
 

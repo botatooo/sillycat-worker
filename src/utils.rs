@@ -2,7 +2,6 @@ use cfg_if::cfg_if;
 use rand::Rng;
 use resvg::render;
 use tiny_skia::{Pixmap, Transform};
-// use url::Url;
 use usvg::{FitTo, Options, Tree};
 
 // use worker::Fetch;
